@@ -10,6 +10,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchNotes } from '@/lib/api';
 import styles from '../../NotesPage.module.css';
 import { useDebounce } from 'use-debounce';
+import Link from 'next/link';
 
 interface NotesClientProps {
   initialTag: string;
@@ -54,9 +55,12 @@ export default function NotesClient({ initialTag }: NotesClientProps) {
             onPageChange={setPage}
           />
         )}
-        <button className={styles.button} onClick={() => setIsModalOpen(true)}>
+        {/* <button className={styles.button} onClick={() => setIsModalOpen(true)}>
           Create note +
-        </button>
+        </button> */}
+        <Link href="/notes/action/create" className={styles.button}>
+          Create note +
+        </Link>
       </header>
 
       <main>
@@ -67,7 +71,8 @@ export default function NotesClient({ initialTag }: NotesClientProps) {
 
       {isModalOpen && (
         <Modal onClose={() => setIsModalOpen(false)}>
-          <NoteForm onClose={() => setIsModalOpen(false)} />
+          {/* <NoteForm onClose={() => setIsModalOpen(false)} /> */}
+          <NoteForm></NoteForm>
         </Modal>
       )}
     </div>
